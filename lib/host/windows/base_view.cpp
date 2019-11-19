@@ -133,7 +133,7 @@ namespace cycfi { namespace elements
             cairo_surface_t* surface = cairo_win32_surface_create(info->offscreen_hdc);
             cairo_t* context = cairo_create(surface);
 
-            auto scale = GetDpiForWindow(hwnd) / 96.0;
+            auto scale = 1.0;
             cairo_scale(context, scale, scale);
 
             view->draw(context,
@@ -189,7 +189,7 @@ namespace cycfi { namespace elements
          float pos_x = GET_X_LPARAM(lparam);
          float pos_y = GET_Y_LPARAM(lparam);
 
-         auto scale = GetDpiForWindow(hwnd) / 96.0;
+         auto scale = 1.0;
          pos_x /= scale;
          pos_y /= scale;
 
@@ -311,7 +311,7 @@ namespace cycfi { namespace elements
          float pos_x = GET_X_LPARAM(lparam);
          float pos_y = GET_Y_LPARAM(lparam);
 
-         auto scale = GetDpiForWindow(hwnd) / 96.0;
+         auto scale = 1.0;
          pos_x /= scale;
          pos_y /= scale;
 
@@ -341,7 +341,7 @@ namespace cycfi { namespace elements
          pos.y = GET_Y_LPARAM(lparam);
          ScreenToClient(hwnd, &pos);
 
-         float scale = GetDpiForWindow(hwnd) / 96.0;
+         float scale = 1.0f;
          info->vptr->scroll(dir, { pos.x / scale, pos.y / scale });
       }
 
@@ -555,13 +555,13 @@ namespace cycfi { namespace elements
       POINT pos;
       GetCursorPos(&pos);
       ScreenToClient(_view, &pos);
-      float scale = GetDpiForWindow(_view) / 96.0;
+      float scale = 1.0f;
       return { float(pos.x) / scale, float(pos.y) / scale };
    }
 
    elements::extent base_view::size() const
    {
-      float scale = GetDpiForWindow(_view) / 96.0;
+      float scale = 1.0f;
       RECT r;
       GetWindowRect(_view, &r);
       return { float(r.right-r.left) / scale, float(r.bottom-r.top) / scale };
@@ -569,7 +569,7 @@ namespace cycfi { namespace elements
 
    void base_view::size(elements::extent p)
    {
-      auto scale = GetDpiForWindow(_view) / 96.0;
+      auto scale = 1.0f;
       auto parent = GetParent(_view);
       RECT bounds;
       GetClientRect(parent, &bounds);
@@ -590,7 +590,7 @@ namespace cycfi { namespace elements
 
    void base_view::refresh(rect area)
    {
-      auto scale = GetDpiForWindow(_view) / 96.0;
+      auto scale = 1.0;
       RECT r;
       r.left = area.left * scale;
       r.right = area.right * scale;
