@@ -87,7 +87,7 @@ namespace cycfi { namespace elements
       if (items.size())
       {
          vtile_composite list;
-         for (auto i = 0; i != items.size(); ++i)
+         for (std::size_t i = 0; i != items.size(); ++i)
          {
             auto e = menu_item(items[i]);
             e.on_click = [btn_text = r.second, on_select, text = items[i]]()
@@ -141,24 +141,24 @@ namespace cycfi { namespace elements
             case key_code::grave_accent:     shifted = '~'; break;
 
             default:
-               r1 += u8"⇧";
+               r1 += u8"â‡§";
                break;
          }
       }
 
       if (mod & mod_alt)
-         r1 += u8"⌥";
+         r1 += u8"âŚĄ";
       if (mod & mod_alt)
-         r1 += u8"⌃";
+         r1 += u8"âŚ�";
       if (mod & mod_super)
 #if defined(__APPLE__)
-         r1 += u8"⌘";
+         r1 += u8"âŚ�";
 #elif defined(_WIN32)
-         r1 += u8"⊞";
+         r1 += u8"âŠž";
 #elif defined(__linux__)
-         r1 += u8"◇";
+         r1 += u8"â—‡";
 #else
-         r1 += u8"�";
+         r1 += u8"ďż˝";
 #endif
 
       if (shifted)
@@ -169,7 +169,7 @@ namespace cycfi { namespace elements
       {
          switch (k)
          {
-            default:                         r2 += u8"�"; break;
+            default:                         r2 += u8"ďż˝"; break;
 
             case key_code::space:            r2 += ' '; break;
             case key_code::apostrophe:       r2 += '\''; break;
@@ -204,25 +204,25 @@ namespace cycfi { namespace elements
             case key_code::backslash:        r2 += '\\'; break;
             case key_code::right_bracket:    r2 += ']'; break;
             case key_code::grave_accent:     r2 += '`'; break;
-            case key_code::escape:           r2 += u8"⎋"; break;
-            case key_code::enter:            r2 += u8"⏎"; break;
-            case key_code::tab:              r2 += u8"⇥"; break;
-            case key_code::backspace:        r2 += u8"⌫"; break;
+            case key_code::escape:           r2 += u8"âŽ‹"; break;
+            case key_code::enter:            r2 += u8"âŹŽ"; break;
+            case key_code::tab:              r2 += u8"â‡Ą"; break;
+            case key_code::backspace:        r2 += u8"âŚ«"; break;
             case key_code::insert:           break;
-            case key_code::_delete:          r2 += u8"⌫"; break;
-            case key_code::right:            r2 += u8"→"; break;
-            case key_code::left:             r2 += u8"←"; break;
-            case key_code::down:             r2 += u8"↓"; break;
-            case key_code::up:               r2 += u8"↑"; break;
-            case key_code::page_up:          r2 += u8"⇞"; break;
-            case key_code::page_down:        r2 += u8"⇟"; break;
-            case key_code::home:             r2 += u8"⇱"; break;
-            case key_code::end:              r2 += u8"⇲"; break;
-            case key_code::caps_lock:        r2 += u8"⇪"; break;
-            case key_code::scroll_lock:      r2 += u8"⤓"; break;
-            case key_code::num_lock:         r2 += u8"⇭"; break;
-            case key_code::print_screen:     r2 += u8"⎙"; break;
-            case key_code::pause:            r2 += u8"⎉"; break;
+            case key_code::_delete:          r2 += u8"âŚ«"; break;
+            case key_code::right:            r2 += u8"â†’"; break;
+            case key_code::left:             r2 += u8"â†�"; break;
+            case key_code::down:             r2 += u8"â†“"; break;
+            case key_code::up:               r2 += u8"â†‘"; break;
+            case key_code::page_up:          r2 += u8"â‡ž"; break;
+            case key_code::page_down:        r2 += u8"â‡ź"; break;
+            case key_code::home:             r2 += u8"â‡±"; break;
+            case key_code::end:              r2 += u8"â‡˛"; break;
+            case key_code::caps_lock:        r2 += u8"â‡Ş"; break;
+            case key_code::scroll_lock:      r2 += u8"â¤“"; break;
+            case key_code::num_lock:         r2 += u8"â‡­"; break;
+            case key_code::print_screen:     r2 += u8"âŽ™"; break;
+            case key_code::pause:            r2 += u8"âŽ‰"; break;
 
             case key_code::f1: case key_code::f2: case key_code::f3:
             case key_code::f4: case key_code::f5: case key_code::f6:
@@ -248,17 +248,17 @@ namespace cycfi { namespace elements
             case key_code::kp_multiply:      r2 += '*'; break;
             case key_code::kp_subtract:      r2 += '-'; break;
             case key_code::kp_add:           r2 += '+'; break;
-            case key_code::kp_enter:         r2 += u8"⌤"; break;
+            case key_code::kp_enter:         r2 += u8"âŚ¤"; break;
             case key_code::kp_equal:         r2 += '='; break;
-            case key_code::left_shift:       r2 += u8"⇧"; break;
-            case key_code::left_control:     r2 += u8"⇧"; break;
+            case key_code::left_shift:       r2 += u8"â‡§"; break;
+            case key_code::left_control:     r2 += u8"â‡§"; break;
             case key_code::left_alt:         r2 += '='; break;
             case key_code::left_super:       r2 += '='; break;
             case key_code::right_shift:      r2 += '='; break;
-            case key_code::right_control:    r2 += u8"⌃"; break;
-            case key_code::right_alt:        r2 += u8"⌥"; break;
-            case key_code::right_super:      r2 += u8"⌘"; break;
-            case key_code::menu:             r2 += u8"☰"; break;
+            case key_code::right_control:    r2 += u8"âŚ�"; break;
+            case key_code::right_alt:        r2 += u8"âŚĄ"; break;
+            case key_code::right_super:      r2 += u8"âŚ�"; break;
+            case key_code::menu:             r2 += u8"â�°"; break;
          }
       }
 
