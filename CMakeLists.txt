@@ -5,6 +5,8 @@
 ###############################################################################
 cmake_minimum_required(VERSION 3.9.6...3.15.0)
 
+project(elements LANGUAGES C CXX)
+
 set(DEFAULT_BUILD_TYPE "Release")
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     message(STATUS "Setting build type to '${DEFAULT_BUILD_TYPE}' as none was specified.")
