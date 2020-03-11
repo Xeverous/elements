@@ -425,12 +425,12 @@ namespace cycfi { namespace elements
                }
                break;
 
-            case WM_MOUSEHWHEEL:
+/*            case WM_MOUSEWHEEL:
                {
                   float delta = -GET_WHEEL_DELTA_WPARAM(wparam);
                   on_scroll(hwnd, info, lparam, { delta, 0 });
                }
-               break;
+               break;*/
 
             case WM_SETCURSOR:
                if (LOWORD(lparam) == HTCLIENT && current_cursor != GetCursor())

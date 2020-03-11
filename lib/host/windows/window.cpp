@@ -122,7 +122,7 @@ namespace cycfi { namespace elements
          {
             case WM_CLOSE: return on_close(info->wptr);
 
-            case WM_DPICHANGED:
+//            case WM_DPICHANGED:
             case WM_SIZE: return on_size(hwnd);
 
             case WM_SIZING:

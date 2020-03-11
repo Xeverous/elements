@@ -96,8 +96,8 @@ namespace cycfi { namespace elements
    fs::path app_data_path()
    {
       LPWSTR path = nullptr;
-      SHGetKnownFolderPath(FOLDERID_ProgramData, KF_FLAG_CREATE, nullptr, &path);
-      return fs::path{ path };
+      //SHGetKnownFolderPath(FOLDERID_ProgramData, KF_FLAG_CREATE, nullptr, &path);
+      return fs::path{};
    }
 }}
 
