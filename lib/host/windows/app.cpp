@@ -9,7 +9,7 @@
 #include <infra/assert.hpp>
 #include <boost/filesystem.hpp>
 #include <windows.h>
-#include <ShellScalingAPI.h>
+//#include <ShellScalingAPI.h>
 #include <shlobj.h>
 #include <cstring>
 
@@ -71,7 +71,7 @@ namespace cycfi { namespace elements
    {
       init_app init;
       _app_name = app_config.application_title;
-      SetProcessDpiAwareness(PROCESS_SYSTEM_DPI_AWARE);
+      //SetProcessDpiAwareness(PROCESS_SYSTEM_DPI_AWARE);
    }
 
    app::~app()
@@ -96,7 +96,7 @@ namespace cycfi { namespace elements
    fs::path app_data_path()
    {
       LPWSTR path = nullptr;
-      SHGetKnownFolderPath(FOLDERID_AppDataProgramData, KF_FLAG_CREATE, nullptr, &path);
+      SHGetKnownFolderPath(FOLDERID_ProgramData, KF_FLAG_CREATE, nullptr, &path);
       return fs::path{ path };
    }
 }}
