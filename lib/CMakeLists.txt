@@ -126,6 +126,7 @@ elseif (ELEMENTS_HOST_UI_LIBRARY STREQUAL "gtk")
 elseif (WIN32)
    set(ELEMENTS_HOST
       host/windows/utils.hpp
+      host/windows/utils.cpp
       host/windows/app.cpp
       host/windows/base_view.cpp
       host/windows/key.cpp

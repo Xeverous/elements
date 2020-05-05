@@ -41,28 +41,6 @@ namespace cycfi { namespace elements
 {
    key_code translate_key(WPARAM wparam, LPARAM lparam);
 
-   // Convert a wide Unicode string to an UTF8 string
-   std::string utf8_encode(std::wstring const& wstr)
-   {
-      if (wstr.empty())
-         return {};
-      int size = WideCharToMultiByte(CP_UTF8, 0, &wstr[0], (int)wstr.size(), nullptr, 0, nullptr, nullptr);
-      std::string result(size, 0);
-      WideCharToMultiByte(CP_UTF8, 0, &wstr[0], (int)wstr.size(), &result[0], size, nullptr, nullptr);
-      return result;
-   }
-
-   // Convert an UTF8 string to a wide Unicode String
-   std::wstring utf8_decode(std::string const& str)
-   {
-      if (str.empty())
-         return {};
-      int size = MultiByteToWideChar(CP_UTF8, 0, &str[0], (int)str.size(), nullptr, 0);
-      std::wstring result( size, 0 );
-      MultiByteToWideChar(CP_UTF8, 0, &str[0], (int)str.size(), &result[0], size);
-      return result;
-   }
-
    namespace
    {
       constexpr unsigned IDT_TIMER1 = 100;
@@ -192,7 +170,7 @@ namespace cycfi { namespace elements
          float pos_x = GET_X_LPARAM(lparam);
          float pos_y = GET_Y_LPARAM(lparam);
 
-         auto scale = get_scale_for_window(hwnd);
+         auto const scale = get_scale_for_window(hwnd);
          pos_x /= scale;
          pos_y /= scale;
 
@@ -315,7 +293,7 @@ namespace cycfi { namespace elements
          float pos_x = GET_X_LPARAM(lparam);
          float pos_y = GET_Y_LPARAM(lparam);
 
-         auto scale = get_scale_for_window(hwnd);
+         auto const scale = get_scale_for_window(hwnd);
          pos_x /= scale;
          pos_y /= scale;
 
@@ -570,7 +548,7 @@ namespace cycfi { namespace elements
 
    void base_view::size(elements::extent p)
    {
-      auto scale = get_scale_for_window(_view);
+      auto const scale = get_scale_for_window(_view);
       auto parent = GetParent(_view);
       RECT bounds;
       GetClientRect(parent, &bounds);
@@ -591,7 +569,7 @@ namespace cycfi { namespace elements
 
    void base_view::refresh(rect area)
    {
-      auto scale = get_scale_for_window(_view);
+      auto const scale = get_scale_for_window(_view);
       RECT r;
       r.left = area.left * scale;
       r.right = area.right * scale;
@@ -618,7 +596,7 @@ namespace cycfi { namespace elements
       GlobalUnlock(object);
       CloseClipboard();
 
-      return utf8_encode(source);
+      return utf16_to_utf8(source);
    }
 
    void clipboard(std::string const& text)

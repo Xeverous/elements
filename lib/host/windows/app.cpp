@@ -16,6 +16,8 @@
 #include <shellscalingapi.h>
 #endif
 
+#include "utils.hpp"
+
 namespace cycfi { namespace elements
 {
    struct config
@@ -26,13 +28,6 @@ namespace cycfi { namespace elements
       std::string application_version;
    };
 
-   // UTF8 conversion utils defined in base_view.cpp
-
-   // Convert a wide Unicode string to an UTF8 string
-   std::string utf8_encode(std::wstring const& wstr);
-
-   // Convert an UTF8 string to a wide Unicode String
-   std::wstring utf8_decode(std::string const& str);
 }}
 
 
@@ -99,9 +94,13 @@ namespace cycfi { namespace elements
 
    fs::path app_data_path()
    {
-      LPWSTR path = nullptr;
-      SHGetKnownFolderPath(FOLDERID_ProgramData, KF_FLAG_CREATE, nullptr, &path);
-      return fs::path{ path };
+      auto path = []()
+      {
+         PWSTR path = nullptr;
+         SHGetKnownFolderPath(FOLDERID_ProgramData, KF_FLAG_CREATE, nullptr, &path);
+         return co_task_ptr<WCHAR>(path);
+      }();
+      return fs::path{ path.get() };
    }
 }}
 
