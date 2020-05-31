@@ -17,6 +17,6 @@ add_subdirectory(dialogs)
 add_subdirectory(scale)
 add_subdirectory(typography)
 add_subdirectory(doc_aspects)
-
+add_subdirectory(theme_editor)
 
 
